@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MatchIQ HAMZAPLAYSFC</title>
+<meta name="theme-color" content="#00c896">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- iOS Support -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TacticalAI">
+
+<link rel="apple-touch-icon" href="https://scontent.facc6-1.fna.fbcdn.net/v/t39.30808-6/641328259_122219363012287303_7469767183386236443_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=105&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHoVk92HD_w6gaiU8bBt-2YEEi12U5qkRgQSLXZTmqRGL4h2peO8qsmQgMHfeE5Y1FVyy1HtWoVK7Jd08O0VBA3&_nc_ohc=WMUP-Gkd438Q7kNvwFC6wpB&_nc_oc=Adlu1LMcOKh_r2vno2ZfLZZo5fqA6L6OW1436W3WmW4tlXc0Qz9-Yg8yx5b1dPtWLqE&_nc_zt=23&_nc_ht=scontent.facc6-1.fna&_nc_gid=T8PWxBxSv2Bdj0Vrrk2bzQ&oh=00_AfvRNl1nzQ1JRtOwPRdMYCoIMI06An97JVzp0-XcEaaD0A&oe=69A0C952">
+<link rel="manifest" href="manifest.json">
+<meta name="description" content="HamzaPlaysFC MatchIQ: Analyze FC Mobile matches, predict outcomes, get tactical feedback and formation recommendations.">
+<meta name="keywords" content="FC Mobile, MatchIQ, football tactics, formation analyzer, soccer prediction">
+<meta name="author" content="Hamza Ibrahim">
+<meta name="robots" content="index, follow">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p+1TVXkU3lDZxU6KZsyi7g6hX5RzH+EOJr0ZZ2E7Hkq8x7C4G/1Xx7yjwUJHnG7J6FgJ4j6G6j+vWkxXr6lXdw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "HamzaPlaysFC MatchIQ",
+  "operatingSystem": "iOS, Android, Web",
+  "applicationCategory": "GameApplication",
+  "url": "https://www.tiktok.com/@hamzaplaysfc",
+  "image": "https://scontent.facc6-1.fna.fbcdn.net/v/t39.30808-6/641328259_122219363012287303_7469767183386236443_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=105&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHoVk92HD_w6gaiU8bBt-2YEEi12U5qkRgQSLXZTmqRGL4h2peO8qsmQgMHfeE5Y1FVyy1HtWoVK7Jd08O0VBA3&_nc_ohc=WMUP-Gkd438Q7kNvwFC6wpB&_nc_oc=Adlu1LMcOKh_r2vno2ZfLZZo5fqA6L6OW1436W3WmW4tlXc0Qz9-Yg8yx5b1dPtWLqE&_nc_zt=23&_nc_ht=scontent.facc6-1.fna&_nc_gid=T8PWxBxSv2Bdj0Vrrk2bzQ&oh=00_AfvRNl1nzQ1JRtOwPRdMYCoIMI06An97JVzp0-XcEaaD0A&oe=69A0C952",
+  "developer": {
+    "@type": "Person",
+    "name": "Hamza Abdul Rahman"
+  },
+  "description": "Analyze FC Mobile matches, get tactical feedback, predict outcomes, and recommended formations."
+}
+</script>
+
+<style>
+    
+h2{text-align:center;}
+select,input{width:100%; padding:10px; margin:6px 0; border-radius:8px; border:none; background:#2a2a2a; color:white; font-weight:bold;}
+.pitch{margin-top:10px; padding:15px; background:#1a1a1a; border-radius:12px;}
+.row{display:flex; justify-content:center; margin:6px 0;}
+.position{margin:4px; text-align:center;}
+.position label{display:block; font-size:11px; color:#00c896;}
+.position input{width:55px; padding:6px; border-radius:6px; border:none; text-align:center; background:#2a2a2a; color:white; font-weight:bold;}
+button{width:100%; margin-top:10px; padding:12px; border:none; border-radius:10px; background:#00c896; color:black; font-weight:bold; cursor:pointer;}
+.result{margin-top:15px; padding:15px; border-radius:10px; background:#1a1a1a; text-align:center;}
+.bar-container{margin:10px 0; background:#2a2a2a; border-radius:8px; height:20px; overflow:hidden;}
+.bar{height:100%; background:#00c896; transition:0.6s;}
+
+body {
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:url("https://gdm-universal-media.b-cdn.net/realsport-production/fc-mobile-26-update.webp?width=1320") center/cover no-repeat fixed;
+    color:white;
+}
+
+body::before {
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.65); 
+    z-index:-1;
+}
+.app-footer {
+    text-align: center;
+    padding: 15px 10px;
+    background: #111;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 20px;
+    border-top: 1px solid #00c896;
+}
+
+.app-footer .social-links a {
+    color: #00c896;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+}
+
+.app-footer .social-links a i {
+    margin-right: 6px;
+    font-size: 16px;
+}
+
+.app-footer .social-links a:hover {
+    text-decoration: underline;
+}
+.card {
+    width: 95%;
+    max-width: 560px;
+    padding: 22px;
+    border-radius: 16px;
+    background: #111;
+    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+    margin: 15px auto;
+}
+
+/* Make inputs scale nicely */
+select, input, button {
+    font-size: 15px;
+}
+
+/* Player rating boxes */
+.position input {
+    width: 52px;
+    padding: 6px;
+    font-size: 14px;
+}
+
+/* Pitch spacing */
+.pitch {
+    margin-top: 10px;
+    padding: 12px;
+}
+
+/* Rows wrap on small screens */
+.row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* 📱 MOBILE OPTIMIZATION */
+@media (max-width: 768px) {
+
+    h2 { font-size: 20px; }
+    h3 { font-size: 16px; }
+
+    .position input {
+        width: 48px;
+        font-size: 13px;
+    }
+
+    button {
+        padding: 14px;
+        font-size: 15px;
+    }
+
+    .result {
+        font-size: 14px;
+    }
+}
+
+/* 📱 SMALL PHONES */
+@media (max-width: 480px) {
+
+    .card {
+        padding: 18px;
+    }
+
+    .position input {
+        width: 44px;
+        padding: 5px;
+        font-size: 12px;
+    }
+
+    .position label {
+        font-size: 10px;
+    }
+
+    .app-footer {
+        font-size: 12px;
+    }
+
+    .app-footer .social-links a {
+        display: block;
+        margin: 6px 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h2> MatchIQ HAMZAPLAYSFC</h2>
+
+<input type="text" id="playerA_name" placeholder="Enter Player A Name">
+<input type="text" id="playerB_name" placeholder="Enter Player B Name">
+
+<h3>Player A Formation</h3>
+<select id="a_form" onchange="renderFormation('A')"></select>
+<div id="pitchA" class="pitch"></div>
+
+<h3>Player B Formation</h3>
+<select id="b_form" onchange="renderFormation('B')"></select>
+<div id="pitchB" class="pitch"></div>
+
+<button onclick="predict()">Predict Match</button>
+<div id="result" class="result"></div>
+
+<!-- Footer HTML, place before </body> -->
+<footer class="app-footer">
+  <p>Follow <strong>HamzaPlaysFC</strong> on:</p>
+  <div class="social-links">
+    <a href="https://www.tiktok.com/@hamzaplaysfc" target="_blank">
+      <i class="fab fa-tiktok"></i> TikTok
+    </a>
+    <a href="http://www.youtube.com/@hamzaplaysfc" target="_blank">
+      <i class="fab fa-youtube"></i> YouTube
+    </a>
+    <a href="https://www.facebook.com/HamzaPlaysFC" target="_blank">
+      <i class="fab fa-facebook"></i> Facebook
+    </a>
+  </div>
+</footer>
+
+<script>
+const a_form = document.getElementById("a_form");
+const b_form = document.getElementById("b_form");
+
+const pitchA = document.getElementById("pitchA");
+const pitchB = document.getElementById("pitchB");
+
+const result = document.getElementById("result");
+
+const playerA_name = document.getElementById("playerA_name");
+const playerB_name = document.getElementById("playerB_name");
+
+
+
+// ---------------- FORMATIONS ----------------
+const formations = {
+
+"4-3-3 Attack":[["ST"],["LW","RW"],["CM","CM","CM"],["LB","CB","CB","RB"],["GK"]],
+"4-3-3 Holding":[["ST"],["LW","RW"],["CDM","CM","CM"],["LB","CB","CB","RB"],["GK"]],
+"4-3-3 False 9":[["CF"],["LW","RW"],["CM","CM","CM"],["LB","CB","CB","RB"],["GK"]],
+"4-3-3 Defend":[["ST"],["LW","RW"],["CM","CM","CM"],["LB","CB","CB","RB"],["GK"]],
+
+"4-2-3-1":[["ST"],["CAM"],["LM","RM"],["CDM","CDM"],["LB","CB","CB","RB"],["GK"]],
+"4-2-3-1 Wide":[["ST"],["CAM"],["LW","RW"],["CDM","CDM"],["LB","CB","CB","RB"],["GK"]],
+"4-2-2-2":[["ST","ST"],["CAM","CAM"],["CDM","CDM"],["LB","CB","CB","RB"],["GK"]],
+
+"4-4-2":[["ST","ST"],["LM","CM","CM","RM"],["LB","CB","CB","RB"],["GK"]],
+"4-4-2 Holding":[["ST","ST"],["LM","CDM","CDM","RM"],["LB","CB","CB","RB"],["GK"]],
+"4-4-1-1":[["ST"],["CF"],["LM","CM","CM","RM"],["LB","CB","CB","RB"],["GK"]],
+
+"4-1-2-1-2 Narrow":[["ST","ST"],["CAM"],["CM","CM"],["CDM"],["LB","CB","CB","RB"],["GK"]],
+"4-1-2-1-2 Wide":[["ST","ST"],["CAM"],["LM","RM"],["CDM"],["LB","CB","CB","RB"],["GK"]],
+
+"4-5-1":[["ST"],["LM","CM","CM","CM","RM"],["LB","CB","CB","RB"],["GK"]],
+
+"3-5-2":[["ST","ST"],["LM","CM","CM","CM","RM"],["CB","CB","CB"],["GK"]],
+"3-4-3":[["ST"],["LW","RW"],["CM","CM"],["LM","RM"],["CB","CB","CB"],["GK"]],
+"3-4-2-1":[["ST"],["CAM","CAM"],["LM","RM"],["CM","CM"],["CB","CB","CB"],["GK"]],
+
+"5-3-2":[["ST","ST"],["CM","CM","CM"],["LWB","CB","CB","CB","RWB"],["GK"]],
+"5-4-1":[["ST"],["LM","CM","CM","RM"],["LWB","CB","CB","CB","RWB"],["GK"]],
+"5-2-1-2":[["ST","ST"],["CAM"],["CDM","CDM"],["LWB","CB","CB","CB","RWB"],["GK"]],
+
+"4-2-4":[["ST","ST"],["LW","RW"],["CM","CM"],["LB","CB","CB","RB"],["GK"]],
+"4-1-4-1":[["ST"],["LM","CM","CM","RM"],["CDM"],["LB","CB","CB","RB"],["GK"]],
+
+};
+
+const positionGroups = {
+"GK":"defense","LB":"defense","CB":"defense","RB":"defense",
+"LWB":"defense","RWB":"defense",
+"CDM":"midfield","CM":"midfield","CAM":"midfield","LM":"midfield","RM":"midfield",
+"LW":"attack","RW":"attack","ST":"attack","CF":"attack"
+};
+
+const formationsList = Object.keys(formations);
+
+function loadFormations(){
+    formationsList.forEach(f=>{
+        a_form.innerHTML+=`<option>${f}</option>`;
+        b_form.innerHTML+=`<option>${f}</option>`;
+    });
+    renderFormation('A');
+    renderFormation('B');
+}
+
+
+function renderFormation(player){
+    const formation = player==='A'?a_form.value:b_form.value;
+    const container = player==='A'?pitchA:pitchB;
+
+    container.innerHTML="";
+
+    formations[formation].forEach(row=>{
+        const rowDiv = document.createElement("div");
+        rowDiv.className="row";
+
+        row.forEach(pos=>{
+            rowDiv.innerHTML+=`
+            <div class="position">
+                <label>${pos}</label>
+                <input type="number" class="${player}_rating" min="0" max="122">
+            </div>`;
+        });
+
+        container.appendChild(rowDiv);
+    });
+}
+
+// ---------------- STRENGTH ----------------
+function strength(player){
+
+    const inputs = document.querySelectorAll(`.${player}_rating`);
+
+    // ✅ PLACE IT HERE
+    const empty = [...inputs].every(i => !i.value);
+    if (empty) return NaN;
+
+    let total = 0;
+    let count = 0;
+
+    inputs.forEach(input => {
+        const val = parseFloat(input.value);
+
+        if(!isNaN(val)){
+            total += val;
+            count++;
+        }
+    });
+
+    return count ? total / count : NaN;
+}
+
+// ---------------- GROUP ANALYSIS ----------------
+function groupStrength(player){
+    const inputs = document.querySelectorAll(`.${player}_rating`);
+    const totals = {attack:[],midfield:[],defense:[]};
+
+    inputs.forEach(i=>{
+        const pos = i.closest(".position").querySelector("label").textContent;
+        const group = positionGroups[pos];
+        if(group) totals[group].push(parseFloat(i.value||0));
+    });
+
+    const avg={};
+    for(const g in totals){
+        const arr=totals[g];
+        avg[g]=arr.length?arr.reduce((a,b)=>a+b,0)/arr.length:0;
+    }
+    return avg;
+}
+
+// ---------------- FEEDBACK ----------------
+function feedback(name, g){
+
+    const atk = g.attack;
+    const mid = g.midfield;
+    const def = g.defense;
+
+    let analysis = [];
+    let style = "";
+    let advice = "";
+    let formation = "";
+
+    // ---- PLAYSTYLE DETECTION ----
+    if(atk > mid && atk > def)
+        style = "Aggressive Attacking Style";
+
+    else if(def > atk && def > mid)
+        style = "Defensive / Counter Style";
+
+    else if(mid > atk && mid > def)
+        style = "Possession Control Style";
+
+    else
+        style = "Balanced Tactical Setup";
+
+    // ---- WEAKNESS DETECTION ----
+    if(def < atk && def < mid)
+        analysis.push("🧱 Defensive structure is your primary vulnerability");
+
+    if(mid < atk && mid < def)
+        analysis.push("🛡 Midfield control may collapse against strong opponents");
+
+    if(atk < mid && atk < def)
+        analysis.push("⚡ Attacking efficiency / finishing threat is limited");
+
+    // ---- STRENGTH INTERPRETATION ----
+    if(atk > 105)
+        analysis.push("🔥 Elite attacking potential detected");
+
+    if(mid > 105)
+        analysis.push("🎮 Strong tempo & possession control");
+
+    if(def > 105)
+        analysis.push("🧱 Defensive wall profile activated");
+
+    // ---- RISK PROFILING ----
+    if(atk > 100 && def < 85)
+        analysis.push("⚠ High-risk system: Likely vulnerable to counter-attacks");
+
+    if(def > 100 && atk < 85)
+        analysis.push("⚠ Low-scoring profile: Matches may lack goal output");
+
+    if(mid > 100 && atk > 95)
+        analysis.push("✔ Fluid build-up system with attacking support");
+
+    // ---- FORMATION RECOMMENDATION ENGINE ----
+    if(atk > mid && atk > def){
+
+        if(def < 90)
+            formation = "Recommended Formation: 4-2-4 (Maximize attack, compensate defense)";
+        else
+            formation = "Recommended Formation: 4-3-3 (Exploit attacking dominance)";
+    }
+
+    else if(def > atk && def > mid){
+
+        if(atk < 90)
+            formation = "Recommended Formation: 5-4-1 (Defensive lockdown)";
+        else
+            formation = "Recommended Formation: 4-2-3-1 (Balanced counter system)";
+    }
+
+    else if(mid > atk && mid > def){
+
+        if(atk > 95)
+            formation = "Recommended Formation: 4-3-3 (Possession with attacking width)";
+        else
+            formation = "Recommended Formation: 4-5-1 (Midfield control emphasis)";
+    }
+
+    else{
+        formation = "Recommended Formation: 4-4-2 (Balanced tactical stability)";
+    }
+
+    // ---- COACH ADVICE ----
+    if(def < 85)
+        advice = "Coach Advice: Defensive reinforcement strongly recommended";
+
+    else if(atk < 85)
+        advice = "Coach Advice: Increase attacking options / finishing quality";
+
+    else if(mid < 85)
+        advice = "Coach Advice: Improve midfield structure & passing lanes";
+
+    else
+        advice = "Coach Advice: Tactical structure looks competitive";
+
+    return `
+    <b>${name}</b><br>
+    🎯 Style: ${style}<br>
+    ${formation}<br><br>
+    ${analysis.join("<br>")}<br><br>
+    💡 ${advice}
+    `;
+}
+
+// ---------------- PROBABILITY ----------------
+function probability(sa,sb){
+    return 1/(1+Math.pow(10,(sb-sa)/6));
+}
+
+// ---------------- PREDICT ----------------
+function predict() {
+    const sA = strength("A");
+    const sB = strength("B");
+
+    if (isNaN(sA) || isNaN(sB)) {
+        result.innerHTML = "⚠ Fill player ratings";
+        return;
+    }
+
+    // ✅ Escape user input here
+    const nameA = playerA_name.value.trim().replace(/</g,"&lt;").replace(/>/g,"&gt;") || "Player A";
+    const nameB = playerB_name.value.trim().replace(/</g,"&lt;").replace(/>/g,"&gt;") || "Player B";
+
+    const pA = probability(sA,sB);
+    const pB = 1 - pA;
+
+    const gA = groupStrength("A");
+    const gB = groupStrength("B");
+
+    result.innerHTML = `
+        <h3>📊 Win Probability</h3>
+        ${nameA} → ${(pA*100).toFixed(1)}%
+        <div class="bar-container"><div class="bar" style="width:${pA*100}%"></div></div>
+        ${nameB} → ${(pB*100).toFixed(1)}%
+        <div class="bar-container"><div class="bar" style="width:${pB*100}%"></div></div>
+
+        <h4>💡 Tactical Feedback</h4>
+        ${feedback(nameA,gA)}<br><br>
+        ${feedback(nameB,gB)}
+    `;
+}
+
+loadFormations();
+
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js");
+}
+
+</script>
+</body>
+</html>

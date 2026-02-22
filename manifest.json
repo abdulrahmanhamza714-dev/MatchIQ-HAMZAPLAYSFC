@@ -1,0 +1,20 @@
+{
+  "name": "MatchIQ HAMZAPLAYSFC",
+  "short_name": "MatchIQ",
+  "start_url": "MatchIQ.html",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#00c896",
+  "icons": [
+    {
+      "src": "https://scontent.facc6-1.fna.fbcdn.net/v/t39.30808-6/641328259_122219363012287303_7469767183386236443_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=105&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHoVk92HD_w6gaiU8bBt-2YEEi12U5qkRgQSLXZTmqRGL4h2peO8qsmQgMHfeE5Y1FVyy1HtWoVK7Jd08O0VBA3&_nc_ohc=WMUP-Gkd438Q7kNvwFQXY1I&_nc_oc=Admtxij2XCRIUtCq2rng6L9l3N01KF9w6r25eK9HumebpXCtuOr921CDFrPHzWaot5Q&_nc_zt=23&_nc_ht=scontent.facc6-1.fna&_nc_gid=gQRm7C8L-lRImo_vDv1M9g&oh=00_AftqaP0aY0S3qfNUh3ZNWsRt0yI7_fHroEmhWtktXZNgGw&oe=69A09112",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://scontent.facc6-1.fna.fbcdn.net/v/t39.30808-6/641328259_122219363012287303_7469767183386236443_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=105&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHoVk92HD_w6gaiU8bBt-2YEEi12U5qkRgQSLXZTmqRGL4h2peO8qsmQgMHfeE5Y1FVyy1HtWoVK7Jd08O0VBA3&_nc_ohc=WMUP-Gkd438Q7kNvwFQXY1I&_nc_oc=Admtxij2XCRIUtCq2rng6L9l3N01KF9w6r25eK9HumebpXCtuOr921CDFrPHzWaot5Q&_nc_zt=23&_nc_ht=scontent.facc6-1.fna&_nc_gid=gQRm7C8L-lRImo_vDv1M9g&oh=00_AftqaP0aY0S3qfNUh3ZNWsRt0yI7_fHroEmhWtktXZNgGw&oe=69A09112",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
