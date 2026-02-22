@@ -1,2 +1,3 @@
 # MatchIQ-HAMZAPLAYSFC
-📊 MatchIQ HAMZAPLAYSFC – Beyond borders, beyond extraordinary! Predict, analyze, and optimize your FC Mobile matches.
+📊 MatchIQ HAMZAPLAYSFC –  Predict, analyze, and optimize your FC Mobile matches.
+Follow me on Tiktok Youtube facebook for more Fc mobiles videos and tools
